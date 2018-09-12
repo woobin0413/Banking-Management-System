@@ -1,0 +1,40 @@
+{
+  "name": "banking_management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Banking Management",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-mysql-session": "^2.0.0",
+    "express-session": "^1.15.6",
+    "fs": "^0.0.1-security",
+    "gulp-pug": "^4.0.1",
+    "http": "^0.0.0",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.10",
+    "md5": "^2.2.1",
+    "multer": "^1.3.1",
+    "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pbkdf2": "^3.0.16",
+    "pbkdf2-password": "^1.2.1",
+    "pug": "^2.0.3",
+    "save": "^2.3.2",
+    "session-file-store": "^1.2.0",
+    "sha256": "^0.2.0",
+    "supervisor": "^0.12.0",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
