@@ -1,4 +1,7 @@
 var app = require('./config/express')();
+var auth = require('./routes/auth')();
+app.use('/', auth);
+
 var topic = require('./routes/topic')();
 app.use('/', topic);
 
