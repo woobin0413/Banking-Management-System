@@ -1,7 +1,7 @@
 module.exports =  function(){
   //EXPRESS template engine "PUG"
   var express = require('express');
-
+  var conn = require('./config');
   //같은 디렉토리는 ./해야한다.
   //express는 session 기능이없다. 그래서 express가
   //세션을 처리하기위하여 express-session이라는 모듈을 사용한다.

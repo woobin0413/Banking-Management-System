@@ -1,7 +1,7 @@
 module.exports = function(passport){
 
   var router = require('express').Router();
-  var conn = require('../config/mysql/config');
+  var conn = require('../config/config');
 
   //하나의 파일을 만들기 위한 form tag
   router.get('/', function(req,res){
