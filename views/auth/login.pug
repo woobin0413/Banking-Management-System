@@ -3,18 +3,19 @@ html(language=en)
   head
     meta(charset='utf-8')
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='../css/stylesheet.css')
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
   body  
-    h1 Pug Examples
     div.container
-      p Cool Pug examples!
-    form(action='/auth/login', method='post')
-      p
-        input(type='text', name='username', placeholder='username')
-      p
-        input(type='password', name='password', placeholder='password')
-      p
-        input(type='submit')
-      
+      div.jumbotron.text-center
+        h3 SpaceBoy cares about our customer's financial situations 
+        form(action='/auth/login', method='post')
+          p
+            input(type='text', name='username', placeholder='username')
+          p
+            input(type='password', name='password', placeholder='password')
+          p
+            input(type='submit')
+          
