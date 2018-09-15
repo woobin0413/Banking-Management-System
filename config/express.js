@@ -10,7 +10,7 @@ module.exports =  function(){
   var app = express();
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(express.static('public'))
+  app.use(express.static('/public/'))
   app.set('view engine', 'pug');
   app.set('views','./views');
   //session id의 값과 count 에 담긴 1이란 값과 연결시켜서 id의값에 접근하려는 사용자
