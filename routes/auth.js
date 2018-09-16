@@ -2,7 +2,8 @@ module.exports = function(passport){
 
   var router = require('express').Router();
   var conn = require('../config/config');
-
+  var bkfd2Password = require("pbkdf2-password");
+  var hasher = bkfd2Password();
   //하나의 파일을 만들기 위한 form tag
   router.get('/', function(req,res){
     res.render('auth/login');
