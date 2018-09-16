@@ -27,3 +27,6 @@ body{
   width: 40%;
   margin: 5%;
 }
+.custom-control.custom-checkbox {
+  height: 30px;
+}
