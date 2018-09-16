@@ -1,3 +1,29 @@
 body{
-  color:rgb(27, 29, 19);
+  background-color: rgb(27, 29, 19);
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    padding: 10%;
+
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+
+    /* inline-block space fix */
+
+    text-align: center;
+    background-color: rgb(230, 203, 203);
+    padding: 10%;
+}
+
+.container {
+  padding: 8%;
+}
+
+.profilePic {
+  width: 40%;
+  margin: 5%;
 }
