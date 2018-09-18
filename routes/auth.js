@@ -13,6 +13,7 @@ module.exports = function(passport){
   router.post('/auth/login', function(req,res){
     var username = req.body.username;
     var password = req.body.password;
+    var sql = "INSERT INTO users SET ?"
     var hash = crypto.createHmac('sha256', secret)
                      .update(password)
                      .digest('hex');
