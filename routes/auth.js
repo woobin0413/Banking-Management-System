@@ -24,10 +24,9 @@ module.exports = function(passport){
       }
     }
   });
-  
+
   router.get('/register', function(req, res){
     res.render('auth/register');
-    });
   });
 
   //HTML 로 보낼시 (bootstrap 이용시)
