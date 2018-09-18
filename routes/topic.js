@@ -6,13 +6,6 @@ module.exports = function(){
     res.render('auth/login');
   });
 
-  router.post('/auth/login', function(req,res){
-    var username = req.body.username;
-    if(username) {
-      res.redirect('/welcome');
-    }
-  });
-
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
    res.sendFile('welcome.html', {
