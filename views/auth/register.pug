@@ -16,20 +16,17 @@ html(language=en)
         div.col-lg-6.col-centered
           img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822711_user_512x512.png" alt="profileMan")
           img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822727_user_512x512.png" alt="profileMan")    
-          form.form-group(action='/auth/login', method='post')
-            p    
-              input(type='email', class="form-control", id="inputEmail",name='username', placeholder='username')
-            
+
+          form(action='/auth/register', method='post')
             p
-              input(type='password',class="form-control", id="inputPassword", name='password', placeholder='password')
-            div.custom-control.custom-checkbox
-              input(type='checkbox' class="custom-control-input" id="defaultUnchecked")
-              label(class="custom-control-label" for="defaultUnchecked") Remember my User ID
+              input(type='text', name='username', placeholder='username')
             p
-              button(type='submit', class="btn btn-primary btn-lg") Login  
-              a(href='/register')
-                button(type='submit', class="btn btn-warning btn-lg") Sign Up
-                
+              input(type='password', name='password', placeholder='password')
+            p
+              input(type='text', name='displayName', placeholder='displayName')
+            p
+              input(type='submit')
+
         
   style
     include ../../css/style.css

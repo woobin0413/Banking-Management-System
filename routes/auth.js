@@ -18,13 +18,18 @@ module.exports = function(passport){
                      .update(password)
                      .digest('hex');
     if(username) {
-      res.redirect('/welcome');
       if(password) {
         console.log(hash);
+        res.redirect('/welcome');
       }
     }
   });
-  
+
+  router.get('/register', function(req, res){
+    res.render('auth/register');
+    });
+  });
+
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
    res.sendFile('welcome.html', {
