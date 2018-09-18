@@ -17,19 +17,15 @@ module.exports = function(passport){
     var hash = crypto.createHmac('sha256', secret)
                      .update(password)
                      .digest('hex');
-    if(username) {
-      if(password) {
+    if(username && password) {
         console.log(hash);
         res.redirect('/welcome');
-      }
-      else {
-        res.send(500,'showAlert') 
-      }
+    } else {
+      res.redirect('/')
     }
   });
 
   router.get('/register', function(req, res){
-
     res.render('auth/register');
   });
 
