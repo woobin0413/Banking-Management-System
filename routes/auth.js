@@ -24,7 +24,7 @@ module.exports = function(passport){
       }
     }
   });
-
+  
   router.get('/register', function(req, res){
     res.render('auth/register');
     });

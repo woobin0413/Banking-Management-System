@@ -22,14 +22,14 @@ html(language=en)
             
             p
               input(type='password',class="form-control", id="inputPassword", name='password', placeholder='password')
+            p
+              button(type='submit', class="btn btn-primary btn-lg" style='margin-right: 10px;') Login 
+              a.btn.btn-warning.btn-lg(href="/register" role="button") Sign Up
+          
             div.custom-control.custom-checkbox
               input(type='checkbox' class="custom-control-input" id="defaultUnchecked")
               label(class="custom-control-label" for="defaultUnchecked") Remember my User ID
-            p
-              button(type='submit', class="btn btn-primary btn-lg") Login  
-              a(href='/register')
-                button(type='submit', class="btn btn-warning btn-lg") Sign Up
-                
+          
         
   style
     include ../../css/style.css
