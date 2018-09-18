@@ -22,10 +22,14 @@ module.exports = function(passport){
         console.log(hash);
         res.redirect('/welcome');
       }
+      else {
+        res.send(500,'showAlert') 
+      }
     }
   });
 
   router.get('/register', function(req, res){
+
     res.render('auth/register');
   });
 
