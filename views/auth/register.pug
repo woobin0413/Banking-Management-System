@@ -5,15 +5,13 @@ block content
         div.col-lg-6.col-centered
           img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822711_user_512x512.png" alt="profileMan")
           img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822727_user_512x512.png" alt="profileMan")    
-
-          form(action='/auth/register', method='post')
+          form.form-group(action='/auth/register', method='post')
             p
-              input(type='text', name='username', placeholder='username')
+              input(type='email',class="form-control", id="inputEmail", name='email', placeholder='email')
+            p 
+              input(type='password',class="form-control", id="inputPassword", name='password', placeholder='password')
             p
-              input(type='password', name='password', placeholder='password')
+              input(type='nickname',class="form-control", id="inputNickName", name='nickname', placeholder='nickname')            
             p
-              input(type='text', name='displayName', placeholder='displayName')
-            p
-              input(type='submit')
-
+              button(type='submit', class="btn btn-primary btn-lg" style='margin-right: 10px;') Submit
           

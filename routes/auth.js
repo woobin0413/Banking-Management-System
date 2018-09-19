@@ -29,6 +29,10 @@ module.exports = function(passport){
     res.render('auth/register');
   });
 
+  router.post('/auth/register', function(req,res){
+    res.redirect('/');
+  });
+
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
    res.sendFile('welcome.html', {
