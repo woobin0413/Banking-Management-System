@@ -30,6 +30,10 @@ module.exports = function(passport){
   });
 
   router.post('/auth/register', function(req,res){
+    if(req.body.email && req.body.password && req.body.nickname) {
+      var sql = "INSERT INTO users SET ?";
+    }
+
     res.redirect('/');
   });
 
