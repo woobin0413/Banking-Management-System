@@ -43,8 +43,7 @@ module.exports = function(passport){
         } else {
           conn.end();
         }
-      })
-
+      });
     res.redirect('/');
   } else {
     res.send(`
