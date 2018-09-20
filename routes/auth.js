@@ -31,10 +31,26 @@ module.exports = function(passport){
 
   router.post('/auth/register', function(req,res){
     if(req.body.email && req.body.password && req.body.nickname) {
-      var sql = "INSERT INTO users SET ?";
-    }
+      var sql = 'INSERT INTO users (username,password,nickname)';
+      sql += 'VALUES(?,?,?)';
+      var params = [req.body.email,req.body.password,req.body.nickname];
+      conn.query(sql,params,function(err,rows,fields){
+        if(err){
+          console.log(err);
+          res.status(500);
+        } else {
+          conn.end();
+        }
+      })
 
     res.redirect('/');
+  } else {
+    res.send(`
+      <P>Either Username, password, or nickname hasn't been inputed </P>
+      <br>
+      <p>Try again</p>
+      `)
+  }
   });
 
   //HTML 로 보낼시 (bootstrap 이용시)
