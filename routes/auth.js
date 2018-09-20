@@ -13,7 +13,6 @@ module.exports = function(passport){
   router.post('/auth/login', function(req,res){
     var username = req.body.username;
     var password = req.body.password;
-    var sql = "INSERT INTO users SET ?"
     var hash = crypto.createHmac('sha256', secret)
                      .update(password)
                      .digest('hex');
@@ -30,10 +29,13 @@ module.exports = function(passport){
   });
 
   router.post('/auth/register', function(req,res){
+    var hash = crypto.createHmac('sha256', secret)
+                     .update(req.body.password)
+                     .digest('hex');
     if(req.body.email && req.body.password && req.body.nickname) {
       var sql = 'INSERT INTO users (username,password,nickname)';
       sql += 'VALUES(?,?,?)';
-      var params = [req.body.email,req.body.password,req.body.nickname];
+      var params = [req.body.email,hash,req.body.nickname];
       conn.query(sql,params,function(err,rows,fields){
         if(err){
           console.log(err);
@@ -47,7 +49,6 @@ module.exports = function(passport){
   } else {
     res.send(`
       <P>Either Username, password, or nickname hasn't been inputed </P>
-      <br>
       <p>Try again</p>
       `)
   }
