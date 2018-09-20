@@ -39,10 +39,14 @@ module.exports = function(passport){
         res.status(500);
       } else {
         for (var i in row) {
-          console.log(row[i].username);
+          if((row[i].username) === req.body.username) {
+            alert('Username Already Exist');
+          }
         }
-      }
+      }});
     });
+
+
     /*
     if(req.body.email && req.body.password && req.body.nickname) {
       var sql = 'INSERT INTO users (username,password,nickname)';
