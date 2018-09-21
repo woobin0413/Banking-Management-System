@@ -51,7 +51,7 @@ module.exports = function(passport){
             } else {
               if(rows.length > 0) {
                 return res.send(`
-                  <p>USERNAME ALREADY EXISTS!!!</p>
+                  <h1><span style="color:red">USERNAME ALREADY EXISTS!!!</span></h1>
                   `)
               } else {
                 sql = 'INSERT INTO USERS (username,password, nickname)';
@@ -70,10 +70,6 @@ module.exports = function(passport){
           });
         }});
       });
-
-
-
-
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
    res.sendFile('welcome.html', {
