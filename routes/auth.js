@@ -33,18 +33,38 @@ module.exports = function(passport){
                      .update(req.body.password)
                      .digest('hex');
     var sql2 = 'SELECT * FROM USERS';
+    var email = req.body.email;
+    var password = req.body.password;
+    var nickname = req.body.nickname;
+
     conn.query(sql2,function(err,row,field){
       if(err) {
         console.log(err);
         res.status(500);
       } else {
         for (var i in row) {
-          if((row[i].username) === req.body.username) {
-            alert('Username Already Exist');
+          console.log(row[i].username);
+          if(email === row[i].username) {
+            res.send(`
+              <P>Username already exists!! </P>
+              <p>Try again</p>
+              `)
           }
         }
-      }});
+        var sql = 'INSERT INTO users (username,password,nickname)';
+        sql += 'VALUES(?,?,?)';
+        var params = [req.body.email,hash,req.body.nickname];
+        conn.query(sql,params,function(err,rows,fields){
+          if(err){
+            console.log(err);
+            res.status(500);
+          } else {
+            res.redirect('/');
+          }
+        });
+      }
     });
+  });
 
 
     /*
@@ -69,7 +89,7 @@ module.exports = function(passport){
       `)
   }
   */
-  });
+
 
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
