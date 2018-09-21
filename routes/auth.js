@@ -32,63 +32,46 @@ module.exports = function(passport){
     var hash = crypto.createHmac('sha256', secret)
                      .update(req.body.password)
                      .digest('hex');
-    var sql2 = 'SELECT * FROM USERS';
+    var sql = 'SELECT * FROM USERS';
     var email = req.body.email;
-    var password = req.body.password;
+
     var nickname = req.body.nickname;
 
-    conn.query(sql2,function(err,row,field){
+    conn.query(sql,function(err,row,field){
       if(err) {
         console.log(err);
         res.status(500);
       } else {
-        for (var i in row) {
-          console.log(row[i].username);
-          if(email === row[i].username) {
-            res.send(`
-              <P>Username already exists!! </P>
-              <p>Try again</p>
-              `)
-          }
-        }
-        var sql = 'INSERT INTO users (username,password,nickname)';
-        sql += 'VALUES(?,?,?)';
-        var params = [req.body.email,hash,req.body.nickname];
-        conn.query(sql,params,function(err,rows,fields){
-          if(err){
-            console.log(err);
-            res.status(500);
-          } else {
-            res.redirect('/');
-          }
-        });
-      }
-    });
-  });
-
-
-    /*
-    if(req.body.email && req.body.password && req.body.nickname) {
-      var sql = 'INSERT INTO users (username,password,nickname)';
-      sql += 'VALUES(?,?,?)';
-
-      var params = [req.body.email,hash,req.body.nickname];
-      conn.query(sql,params,function(err,rows,fields){
-        if(err){
-          console.log(err);
-          res.status(500);
-        } else {
-          conn.end();
-        }
+          sql = 'SELECT * FROM USERS WHERE username = ?';
+          var params = [email]
+          conn.query(sql,params, function(err,rows,fields){
+            if(err) {
+              console.log(err);
+              res.status(500);
+            } else {
+              if(rows.length > 0) {
+                return res.send(`
+                  <p>USERNAME ALREADY EXISTS!!!</p>
+                  `)
+              } else {
+                sql = 'INSERT INTO USERS (username,password, nickname)';
+                sql += 'VALUES(?,?,?)';
+                params = [email,hash,nickname];
+                conn.query(sql,params,function(err,rows,fields){
+                  if(err) {
+                    console.log(err);
+                    res.status(500);
+                  } else {
+                    res.redirect('/');
+                  }
+                });
+              }
+            }
+          });
+        }});
       });
-    res.redirect('/');
-  } else {
-    res.send(`
-      <P>Either Username, password, or nickname hasn't been inputed </P>
-      <p>Try again</p>
-      `)
-  }
-  */
+
+
 
 
   //HTML 로 보낼시 (bootstrap 이용시)
