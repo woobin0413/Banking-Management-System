@@ -32,7 +32,7 @@ module.exports = function(passport){
               `)
             //아이디가 있다면
           } else
-          console.log(row);
+          res.redirect('/welcome');
         }
       });
       }
