@@ -17,10 +17,19 @@ module.exports = function(passport){
                      .update(password)
                      .digest('hex');
     if(username && password) {
+      var sql = 'SELECT * FROM USERS WHERE username = ? and password = ?';
+      var params = [username,hash];
+      conn.query(sql,params,function(err,row,field){
+
+      })
         console.log(hash);
         res.redirect('/welcome');
     } else {
-      res.redirect('/')
+      return res.send(`
+        <h1>
+        <span style="color:red">USERNAME ALREADY EXISTS!!!</span>
+        </h1>
+        `)
     }
   });
 
