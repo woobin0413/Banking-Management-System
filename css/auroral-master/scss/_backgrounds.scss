@@ -1,0 +1,39 @@
+.auroral-agrabah  {
+  @include auroral-container();
+  @include auroral-animation(aura, 2s);
+  background: linear-gradient( -20deg, rgba(26, 0, 192, 0.4) 40%, rgba(215, 0, 67, 0.4)),
+              linear-gradient( 60deg, rgba(26, 0, 192, 1) 10%, rgba(215, 0, 67, 1));
+}
+
+.auroral-northern {
+  @include auroral-container();
+  @include auroral-animation(northern, 10s);
+  background: linear-gradient(10deg, rgba(161,217,180, 1) 20%, rgba(50, 152, 138, 1) 40%, rgba(0, 14, 60, 1) 70%);
+}
+
+.auroral-northern-intense {
+  @include auroral-container();
+  @include auroral-animation(aura, 10s);
+  background: linear-gradient(10deg, rgba(183, 168, 65, 1) 20%, rgba(161, 0, 106, 1) 40%, rgba(55, 29, 64, 1) 60%);
+}
+
+.auroral-northern-dimmed {
+  @include auroral-container();
+  @include auroral-animation(northern, 10s);
+  background: linear-gradient(-45deg, rgba(237, 124, 148, .3) 20%, rgba(35, 82, 154, .3) 70%),
+              linear-gradient(10deg, rgba(145, 107, 99, 1) 7%, rgba(184, 186, 111, 1) 20%, rgba(237, 124, 148, 1) 40%, rgba(35, 82, 154, 1) 60%);
+}
+
+.auroral-northern-dusk {
+  @include auroral-container();
+  @include auroral-animation(northern, 15s);
+  background: linear-gradient(-35deg, rgba(145, 107, 99, .5) 15%, rgba(184, 186, 111, .5) 25%, transparent 60%),
+              linear-gradient(10deg, rgba(145, 107, 99, 1) 9%, rgba(184, 186, 111, 1) 30%, rgba(237, 124, 148, 1) 45%, rgba(35, 82, 154, 1) 65%);
+}
+
+.auroral-northern-warm {
+  @include auroral-container();
+  @include auroral-animation(aura, 10s);
+  background: linear-gradient(5deg, transparent 70%,  rgba(218, 119, 18, 1) 95%),
+              linear-gradient(160deg, rgba(67, 44, 36, 1) 30%, rgba(217, 109, 125, 1) 62%, rgba(218, 119, 18, 1) 95%);
+}

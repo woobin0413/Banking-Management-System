@@ -1,6 +1,4 @@
-body{
-  background-color: rgb(69, 63, 63);
-}
+
 /* centered columns styles */
 .row-centered {
     text-align:center;
@@ -15,10 +13,15 @@ body{
     /* inline-block space fix */
 
     text-align: center;
-    background-color: rgb(230, 203, 203);
+    background-color: rgba(0, 255, 209, 0.77);
+    opacity:0.9;
     padding: 10%;
 }
-
+.containerBG {
+  display: block; // if it is not a block element
+  position: relative;
+  overflow: hidden;
+}
 .container {
   padding: 8%;
 }
