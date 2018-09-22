@@ -20,18 +20,23 @@ module.exports = function(passport){
       var sql = 'SELECT * FROM USERS WHERE username = ? and password = ?';
       var params = [username,hash];
       conn.query(sql,params,function(err,row,field){
-
-      })
-        console.log(hash);
-        res.redirect('/welcome');
-    } else {
-      return res.send(`
-        <h1>
-        <span style="color:red">This USERNAME ALREADY EXISTS!!!</span>
-        </h1>
-        `)
-    }
-  });
+        if(err){
+          res.status(500);
+          console.log(err);
+        } else {
+          //아이디가없다
+          if(row.length===0) {
+            return res.send(`
+              <h1><span style="color:red">USERNAME NOT FOUND ON SYSTEM!!!</span>
+              </h1>
+              `)
+            //아이디가 있다면
+          } else
+          console.log(row);
+        }
+      });
+      }
+    });
 
   router.get('/register', function(req, res){
     res.render('auth/register');
