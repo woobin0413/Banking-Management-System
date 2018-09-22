@@ -27,7 +27,7 @@ module.exports = function(passport){
     } else {
       return res.send(`
         <h1>
-        <span style="color:red">USERNAME ALREADY EXISTS!!!</span>
+        <span style="color:red">This USERNAME ALREADY EXISTS!!!</span>
         </h1>
         `)
     }
