@@ -84,12 +84,15 @@ module.exports = function(passport){
           });
         }});
       });
+
+
   //HTML 로 보낼시 (bootstrap 이용시)
   router.get('/welcome', (req, res) => {
    res.sendFile('welcome.html', {
      root: './views/auth/'
    });
 });
+
 
     return router;
 }
