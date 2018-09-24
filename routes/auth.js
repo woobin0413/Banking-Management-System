@@ -21,7 +21,7 @@ module.exports = function(passport){
       var params = [username,hash];
       conn.query(sql,params,function(err,row,field){
         if(err){
-          res.status(500);
+          res.status(500).send('Internal Server Error');
           console.log(err);
         } else {
           //아이디가없다
@@ -29,9 +29,9 @@ module.exports = function(passport){
             return res.send(`
               <h1><span style="color:red">USERNAME NOT FOUND ON SYSTEM!!!</span>
               </h1>
-              `)
+              `);
             //아이디가 있다면
-          } else
+        } else
           res.redirect('/welcome');
         }
       });
@@ -54,14 +54,14 @@ module.exports = function(passport){
     conn.query(sql,function(err,row,field){
       if(err) {
         console.log(err);
-        res.status(500);
+        res.status(500).send('Internal Server Error');
       } else {
           sql = 'SELECT * FROM USERS WHERE username = ?';
           var params = [email]
           conn.query(sql,params, function(err,rows,fields){
             if(err) {
               console.log(err);
-              res.status(500);
+              res.status(500).send('Internal Server Error');
             } else {
               if(rows.length > 0) {
                 return res.send(`
@@ -74,7 +74,7 @@ module.exports = function(passport){
                 conn.query(sql,params,function(err,rows,fields){
                   if(err) {
                     console.log(err);
-                    res.status(500);
+                    res.status(500).send('Internal Server Error');
                   } else {
                     res.redirect('/');
                   }

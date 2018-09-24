@@ -1,0 +1,20 @@
+extends ../layout
+block content
+    div.container
+      div.row.row-centered
+        div.col-lg-6.col-centered
+          img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822711_user_512x512.png" alt="profileMan")
+          img.profilePic(src="https://www.shareicon.net/data/128x128/2016/09/01/822727_user_512x512.png" alt="profileMan")    
+          form.form-group(action='/auth/login', method='post')
+            p    
+              input(type='email', class="form-control", id="inputEmail",name='username', placeholder='username')
+            
+            p
+              input(type='password',class="form-control", id="inputPassword", name='password', placeholder='password')
+            p
+              button(type='submit', class="btn btn-primary btn-lg" style='margin-right: 10px;') Login 
+              a.btn.btn-warning.btn-lg(href="/register" role="button") Sign Up
+          
+            div.custom-control.custom-checkbox
+              input(type='checkbox' class="custom-control-input" id="defaultUnchecked")
+              label(class="custom-control-label" for="defaultUnchecked") Remember my User ID
