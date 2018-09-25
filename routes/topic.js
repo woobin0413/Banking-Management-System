@@ -14,6 +14,7 @@ module.exports = function(){
       console.log('error:', error);
     } else {
       let weather = JSON.parse(body)
+      console.log(weather);
       let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
       console.log(message);
     }
