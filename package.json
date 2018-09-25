@@ -26,6 +26,7 @@
     "pbkdf2": "^3.0.16",
     "pbkdf2-password": "^1.2.1",
     "pug": "^2.0.3",
+    "request": "^2.88.0",
     "save": "^2.3.2",
     "session-file-store": "^1.2.0",
     "sha256": "^0.2.0",
