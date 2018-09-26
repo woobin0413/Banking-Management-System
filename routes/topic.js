@@ -8,25 +8,31 @@ module.exports = function(){
   let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
 //celcious=> units=metric
-  router.post('/homepage', function(req,res){
-    var zip = req.body.zipcode;
-    
-  })
-  // request(url, function (err, response, body) {
-  //   if(err){
-  //     console.log('error:', error);
-  //   } else {
-  //     let weather = JSON.parse(body)
-  //     console.log(weather);
-  //     let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-  //     console.log(message);
-  //   }
-  // });
+  // router.post('/homepage', function(req,res){
+  //   var zip = req.body.zipcode;
+  //   request(url, function (err, response, body) {
+  //     if(err){
+  //         res.status(500).send('Internal Server Error');
+  //         console.log(err);
+  //     } else {
+  //       let weather = JSON.parse(body)
+  //       let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+  //       res.render(message);
+  //     }
+  //   });
+  // })
+
 
   //하나의 파일을 만들기 위한 form tag
   router.get('/homepage', function(req,res){
     res.render('topic/homepage');
   });
+
+  router.get('/homepage:id', function(req,res){
+    var id = req.params.id;
+    console.log(id);
+  });
+
 
   // var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+"Seoul"+"&appid="+"&APPID=74be192b0326b5dc2bb04884ab39d5e4";
   //       $.ajax({
