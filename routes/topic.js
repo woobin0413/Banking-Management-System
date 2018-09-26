@@ -8,17 +8,20 @@ module.exports = function(){
   let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
 //celcious=> units=metric
-
-  request(url, function (err, response, body) {
-    if(err){
-      console.log('error:', error);
-    } else {
-      let weather = JSON.parse(body)
-      console.log(weather);
-      let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-      console.log(message);
-    }
-  });
+  router.post('/homepage', function(req,res){
+    var zip = req.body.zipcode;
+    
+  })
+  // request(url, function (err, response, body) {
+  //   if(err){
+  //     console.log('error:', error);
+  //   } else {
+  //     let weather = JSON.parse(body)
+  //     console.log(weather);
+  //     let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+  //     console.log(message);
+  //   }
+  // });
 
   //하나의 파일을 만들기 위한 form tag
   router.get('/homepage', function(req,res){

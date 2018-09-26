@@ -24,8 +24,15 @@ block content
           small RECENT POSTS
         hr
         h2 I Love Food
-          i.wi.wi-day-sunny
-          
+        form.form-inline
+          .form-group.mx-sm-3.mb-2
+            h2 zipcode/name of state or city:
+              label.sr-only(for='inputPassword2') Password
+              input(type='search', name='zipcode' placeholder='ZipCode')
+              button.btn.btn-primary.mb-2(type='submit') Confirm identity
+
+              
+                  
         h5
           span.glyphicon.glyphicon-time
           |  Post by Jane Dane, Sep 27, 2015.
