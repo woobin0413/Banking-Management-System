@@ -4,37 +4,24 @@ module.exports = function(){
   const request = require('request');
 
   let apiKey = '74be192b0326b5dc2bb04884ab39d5e4';
-  let city = 'portland';
+  let city = 'montgomery';
   let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
 //celcious=> units=metric
-  router.post('/homepage', function(req,res){
-    var zip = req.body.zipcode;
-    request(url, function (err, response, body) {
+ router.get('/homepage', function(req,res){
+   request(url, function (err, response, body) {
       if(err){
-          res.status(500).send('Internal Server Error');
-          console.log(err);
+        res.status(500).send('Internal Server Error');
+        console.log('error:', error);
       } else {
         let weather = JSON.parse(body)
         let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-        res.render(message);
+        console.log(message);
       }
     });
-  })
+   res.render('topic/homepage');
+ });
 
-
-  //하나의 파일을 만들기 위한 form tag
-  router.get('/homepage', function(req,res){
-    res.render('topic/homepage');
-  });
-
-  // var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+"Seoul"+"&appid="+"&APPID=74be192b0326b5dc2bb04884ab39d5e4";
-  //       $.ajax({
-  //           url: apiURI,
-  //           dataType: "json",
-  //           type: "GET",
-  //           async: "false",
-  //           success: function(resp) {
   //               console.log(resp);
   //               console.log("현재온도 : "+ (resp.main.temp- 273.15) );
   //               console.log("현재습도 : "+ resp.main.humidity);
@@ -45,8 +32,6 @@ module.exports = function(){
   //               console.log("나라   : "+ resp.sys.country );
   //               console.log("도시이름  : "+ resp.name );
   //               console.log("구름  : "+ (resp.clouds.all) +"%" );
-  //           }
-  //       });
 
 
 
