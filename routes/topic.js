@@ -23,8 +23,13 @@ router.post('/homepage/zipcode', function(req,res){
          res.send(`<h1>error zip code </h1>`);
        } else {
          let weather = JSON.parse(body)
+         let temp = weather.main.temp
+         let location = weather.name;
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-         res.send(message);
+         
+
+
+         res.send(weather);
        }
      }
    });
