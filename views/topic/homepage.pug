@@ -24,15 +24,20 @@ block content
           small RECENT POSTS
         hr
         h2 I Love Food
-        form.form-inline
-          .form-group.mx-sm-3.mb-2
-            h2 zipcode/name of state or city:
-              label.sr-only(for='inputPassword2') Password
-              input(type='number', name='zipcode' placeholder='ZipCode')
-              button.btn.btn-primary.mb-2(type='submit') Confirm identity
-
-              
-                  
+      
+        //- form.form-inline(action='/homepage/zipcode='+zipcode method='post')
+        //-   .form-group.mx-sm-3.mb-2
+        //-     h2 zipcode/name of state or city:
+        //-       input(type='number', name='zipcode' placeholder='ZipCode')
+        //-       button.btn.btn-primary.mb-2(type='submit') Confirm identity
+      
+        
+        form(action='/homepage/zipcode' method='post')
+          label Enter zip ZipCode
+            input(type='text' name='zipcode')
+          input(type='submit')
+          
+                
         h5
           span.glyphicon.glyphicon-time
           |  Post by Jane Dane, Sep 27, 2015.

@@ -4,23 +4,27 @@ module.exports = function(){
   const request = require('request');
 
   let apiKey = '74be192b0326b5dc2bb04884ab39d5e4';
-  let city = 'montgomery';
-  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
 
 //celcious=> units=metric
  router.get('/homepage', function(req,res){
-   request(url, function (err, response, body) {
-      if(err){
-        res.status(500).send('Internal Server Error');
-        console.log('error:', error);
-      } else {
-        let weather = JSON.parse(body)
-        let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-        console.log(message);
-      }
-    });
    res.render('topic/homepage');
  });
+
+router.post('/homepage/zipcode', function(req,res){
+  let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
+  request(url, function (err, response, body) {
+     if(err){
+       res.status(500).send('Internal Server Error');
+       console.log('error:', error);
+     } else {
+       let weather = JSON.parse(body)
+       let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+       res.send(message);
+     }
+   });
+
+})
 
   //               console.log(resp);
   //               console.log("현재온도 : "+ (resp.main.temp- 273.15) );
