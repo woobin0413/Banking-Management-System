@@ -16,7 +16,9 @@ router.post('/homepage/zipcode', function(req,res){
   request(url, function (err, response, body) {
      if(err){
        res.status(500).send('Internal Server Error');
-       console.log('error:', error);
+       return res.status(200).send(`<h1>No such zipcode exists</h1>`)
+
+
      } else {
        let weather = JSON.parse(body)
        let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
