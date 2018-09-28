@@ -23,24 +23,15 @@ block content
         h4
           small RECENT POSTS
         hr
-        h2 I Love Food
-      
+        h2 
+          a(href="weather") WEATHER
+            
         //- form.form-inline(action='/homepage/zipcode='+zipcode method='post')
         //-   .form-group.mx-sm-3.mb-2
         //-     h2 zipcode/name of state or city:
         //-       input(type='number', name='zipcode' placeholder='ZipCode')
         //-       button.btn.btn-primary.mb-2(type='submit') Confirm identity
-      
         
-        form(action='/homepage/zipcode' method='post')
-          label Enter zip ZipCode
-            input(type='text' name='zipcode')
-          input(type='submit')
-          
-          
-        i.wi.wi-day-sunny
-            
-
                 
         h5
           span.glyphicon.glyphicon-time

@@ -11,7 +11,15 @@ module.exports = function(){
    res.render('topic/homepage');
  });
 
-router.post('/homepage/zipcode', function(req,res){
+ //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
+ //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
+ router.get('/homepage/weather', function(req,res){
+   res.render('topic/weather',{text:'Good'});
+ });
+
+
+
+router.post('/homepage/weather', function(req,res){
   let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
      if(err){
@@ -29,9 +37,8 @@ router.post('/homepage/zipcode', function(req,res){
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
          if(day_weather == 'Mist') {
-           res.send(`<i class="wi wi-day-sunny"></i>`)
+           res.render('topic/homepage', { title: 'Ninja Store' });
          }
-
        }
      }
    });
