@@ -25,11 +25,13 @@ router.post('/homepage/zipcode', function(req,res){
          let weather = JSON.parse(body)
          let temp = weather.main.temp
          let location = weather.name;
+         let day_weather = weather.weather[0].main;
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-         
 
+         if(day_weather == 'Mist') {
+           res.send(`<i class="wi wi-day-sunny"></i>`)
+         }
 
-         res.send(weather);
        }
      }
    });
