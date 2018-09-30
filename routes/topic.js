@@ -14,8 +14,11 @@ module.exports = function(){
  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
  router.get('/weather', function(req,res){
-   let temps = {36116,11758,}
-   res.render('topic/weather',{temp:30, weatherCondition:50});
+   let temps = [36116,11758,07605];
+   for (var i = 0; i < temps.length; i++) {
+     let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
+   }
+   res.render('topic/weather',{montT: temps[0], weatherCondition:50});
  });
 
 
@@ -38,9 +41,13 @@ router.post('/weather', function(req,res){
          let day_img = weather.weather[0].icon
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
+         if(day_weather == 'Clear'){
+            res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-sunny"});
 
-          res.render('topic/weather', {text: location + " : " + day_weather});
+         } else {
+         res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-lightning"});
 
+        }
        }
      }
 

@@ -9,11 +9,9 @@ block navigate
           p
             button(type='submit', class="btn btn-primary btn-lg" style='margin-right: 10px;') Login 
           h1= text
-
+            i(class= 'wi wi-' + weathercond)
     div.jumbotron
       table.table
-        each temp in temps
-        each weatherCondition in weatherConditions
         thead.thead-dark
           tr
             th(scope='col') #
@@ -36,6 +34,6 @@ block navigate
             td Leonia
             td= temp
             td= weatherCondition
-      
-      
     
+    
+  
