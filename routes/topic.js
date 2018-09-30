@@ -19,7 +19,7 @@ module.exports = function(){
 
 
 
-router.post('/homepage/weather', function(req,res){
+router.post('/weather', function(req,res){
   let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
      if(err){
@@ -28,7 +28,7 @@ router.post('/homepage/weather', function(req,res){
 
      } else {
        if(req.body.zipcode.length != 5) {
-         res.send(`<h1>error zip code </h1>`);
+         res.render('topic/weather', {text: "Zipcode does not exist"})
        } else {
          let weather = JSON.parse(body)
          let temp = weather.main.temp
@@ -36,11 +36,12 @@ router.post('/homepage/weather', function(req,res){
          let day_weather = weather.weather[0].main;
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
-         if(day_weather == 'Mist') {
-           res.render('topic/homepage', { title: 'Ninja Store' });
-         }
+      
+         res.render('topic/weather', {text: location + " : " + day_weather});
+
        }
      }
+
    });
 
 })
