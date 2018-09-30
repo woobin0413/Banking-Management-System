@@ -1,131 +1,51 @@
-extends ../layout
-block content
-  .container-fluid
-    .row.content
-      .col-sm-3.sidenav
-        h4 Spaceboy&apos;s Blog
-        ul.nav.nav-pills.nav-stacked
-          li.active
-            a(href='/homepage') Home
-          li
-            a(href='/weather') Weather
-          li
-            a(href='#section3') Livechat
-          li
-            a(href='#section3') Real Time Search Ranks
-        br
-        .input-group
-          input.form-control(type='text' placeholder='Search Blog..')
-          span.input-group-btn
-            button.btn.btn-default(type='button')
-              span.glyphicon.glyphicon-search
-      //- .col-sm-9
-      //-   h4
-      //-     small RECENT POSTS
-      //-   hr
-      //- 
-      //-   h2 
-      //-     a(href="/weather") WEATHER
-      //- 
-      //-   //- form.form-inline(action='/homepage/zipcode='+zipcode method='post')
-      //-   //-   .form-group.mx-sm-3.mb-2
-      //-   //-     h2 zipcode/name of state or city:
-      //-   //-       input(type='number', name='zipcode' placeholder='ZipCode')
-      //-   //-       button.btn.btn-primary.mb-2(type='submit') Confirm identity
-      //- 
-      //-   block contents
-      //-   h5
-      //-     span.glyphicon.glyphicon-time
-      //-     |  Post by Jane Dane, Sep 27, 2015.
-      //-   h5
-      //-     span.label.label-danger Food
-      //-     span.label.label-primary Ipsum
-      //- 
-      //-   br
-      //-   p
-      //-     | Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      //-   br
-      //-   br
-      //-   table.table
-      //-     thead.thead-dark
-      //-       tr
-      //-         th(scope='col') #
-      //-         th(scope='col') First
-      //-         th(scope='col') Last
-      //-         th(scope='col') Handle
-      //-     tbody
-      //-       tr
-      //-         th(scope='row') 1
-      //-         td Mark
-      //-         td Otto
-      //-         td @mdo
-      //-       tr
-      //-         th(scope='row') 2
-      //-         td Jacob
-      //-         td Thornton
-      //-         td @fat
-      //-       tr
-      //-         th(scope='row') 3
-      //-         td Larry
-      //-         td the Bird
-      //-         td @twitter
-      //- 
-      //- 
-  //-       h4
-  //-         small RECENT POSTS
-  //-       hr
-  //-       h2 Officially Blogging
-  //-       h5
-  //-         span.glyphicon.glyphicon-time
-  //-         |  Post by John Doe, Sep 24, 2015.
-  //-       h5
-  //-         span.label.label-success Lorem
-  //-       br
-  //-       p
-  //-         | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  //-       hr
-  //-       h4 Leave a Comment:
-  //-       form(role='form')
-  //-         .form-group
-  //-           textarea.form-control(rows='3' required='')
-  //-         button.btn.btn-success(type='submit') Submit
-  //-       br
-  //-       br
-  //-       p
-  //-         span.badge 2
-  //-         |  Comments:
-  //-       br
-  //-       .row
-  //-         .col-sm-2.text-center
-  //-           //- img.img-circle(src='bandmember.jpg' height='65' width='65' alt='Avatar')
-  //-         .col-sm-10
-  //-           h4
-  //-             | Anja 
-  //-             small Sep 29, 2015, 9:12 PM
-  //-           p
-  //-             | Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  //-           br
-  //-         .col-sm-2.text-center
-  //-           //- img.img-circle(src='bird.jpg' height='65' width='65' alt='Avatar')
-  //-         .col-sm-10
-  //-           h4
-  //-             | John Row 
-  //-             small Sep 25, 2015, 8:25 PM
-  //-           p
-  //-             | I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  //-           br
-  //-           p
-  //-             span.badge 1
-  //-             |  Comment:
-  //-           br
-  //-           .row
-  //-             .col-sm-2.text-center
-  //-               //- img.img-circle(src='bird.jpg' height='65' width='65' alt='Avatar')
-  //-             .col-xs-10
-  //-               h4
-  //-                 | Nested Bro 
-  //-                 small Sep 25, 2015, 8:28 PM
-  //-               p Me too! WOW!
-  //-               br
-  //- footer.container-fluid
-  //-   p Footer Text
+doctype html
+html(lang='en')
+  head
+    title Bootstrap Example
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') WebSiteName
+        #myNavbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Home
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                | Page 1 
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='#') Page 1-1
+                li
+                  a(href='#') Page 1-2
+                li
+                  a(href='#') Page 1-3
+            li
+              a(href='#') Page 2
+            li
+              a(href='#') Page 3
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#')
+                span.glyphicon.glyphicon-user
+                |  Sign Up
+            li
+              a(href='#')
+                span.glyphicon.glyphicon-log-in
+                |  Login
+    .container
+      h3 Collapsible Navbar
+      p
+        | In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
+      p Only when the button is clicked, the navigation bar will be displayed.
