@@ -1,19 +1,39 @@
 extends ./homepage
 block navigate
   div.container-fluid
-    div.row.row-centered
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu viverra mauris. Aliquam erat volutpat. Ut venenatis diam nec sapien commodo porta eget sit amet ligula. Praesent scelerisque, magna varius pharetra ornare, nibh libero efficitur urna, non molestie enim eros ac magna. Vivamus efficitur hendrerit dolor, porta accumsan risus feugiat quis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi tincidunt lectus sed gravida convallis. Morbi faucibus vehicula est sit amet rutrum. Fusce elementum leo sed lorem molestie commodo.      
-      p= text
-        //- space 넣을떄
-        = "  "
-        
-          
-      
+    div.row-centered
       div.col-lg-6.col-centered
         form.form-group(action='/weather', method='post')
           p    
             input(type='text', class="form-control", id="zipcode",name='zipcode', placeholder='zipcode')
           p
             button(type='submit', class="btn btn-primary btn-lg" style='margin-right: 10px;') Login 
-    
+          h1= text
+
+    div.jumbotron
+      table.table
+        thead.thead-dark
+          tr
+            th(scope='col') #
+            th(scope='col') City
+            th(scope='col') Temp
+            th(scope='col') Weather Condition
+        tbody
+          tr
+            th(scope='row') 1
+            td Montgomery
+            td= temp
+            td= weatherCondition
+          tr
+            th(scope='row') 2
+            td Islip
+            td= temp
+            td= weatherCondition
+          tr
+            th(scope='row') 3
+            td Leonia
+            td= temp
+            td= weatherCondition
+      
+      
     
