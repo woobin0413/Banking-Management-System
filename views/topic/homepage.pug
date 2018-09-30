@@ -1,51 +1,44 @@
-doctype html
-html(lang='en')
-  head
-    title Bootstrap Example
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-  body
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='#') WebSiteName
-        #myNavbar.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li.active
-              a(href='#') Home
-            li.dropdown
-              a.dropdown-toggle(data-toggle='dropdown', href='#')
-                | Page 1 
-                span.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Page 1-1
-                li
-                  a(href='#') Page 1-2
-                li
-                  a(href='#') Page 1-3
+include ../layout
+
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/homepage') SpaceBoy
+    #myNavbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active
+          a(href='/homepage') Home
+        li
+          a(href='/weather') Weather
+        li
+          a(href='/realtime') Real-time-chart
+        li.dropdown
+          a.dropdown-toggle(data-toggle='dropdown', href='#')
+            | Page 1 
+            span.caret
+          ul.dropdown-menu
             li
-              a(href='#') Page 2
+              a(href='#') Page 1-1
             li
-              a(href='#') Page 3
-          ul.nav.navbar-nav.navbar-right
+              a(href='#') Page 1-2
             li
-              a(href='#')
-                span.glyphicon.glyphicon-user
-                |  Sign Up
-            li
-              a(href='#')
-                span.glyphicon.glyphicon-log-in
-                |  Login
-    .container
-      h3 Collapsible Navbar
-      p
-        | In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-      p Only when the button is clicked, the navigation bar will be displayed.
+              a(href='#') Page 1-3
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='#')
+            span.glyphicon.glyphicon-user
+            |  Sign Up
+        li
+          a(href='#')
+            span.glyphicon.glyphicon-log-in
+            |  Login
+block navigate
+  .container
+    h3 Collapsible Navbar
+    p
+      | In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
+    p Only when the button is clicked, the navigation bar will be displayed.
