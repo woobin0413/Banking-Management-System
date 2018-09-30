@@ -14,7 +14,7 @@ module.exports = function(){
  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
  router.get('/weather', function(req,res){
-
+   let temps = {36116,11758,}
    res.render('topic/weather',{temp:30, weatherCondition:50});
  });
 

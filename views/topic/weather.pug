@@ -12,6 +12,8 @@ block navigate
 
     div.jumbotron
       table.table
+        each temp in temps
+        each weatherCondition in weatherConditions
         thead.thead-dark
           tr
             th(scope='col') #
