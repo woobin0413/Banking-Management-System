@@ -36,8 +36,7 @@ router.post('/weather', function(req,res){
          let day_weather = weather.weather[0].main;
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
-      
-         res.render('topic/weather', {text: location + " : " + day_weather});
+          res.render('topic/weather', {text: location + " : " + day_weather, weatherCondition: `<i class="wi wi-night-sleet"></i>`});
 
        }
      }
