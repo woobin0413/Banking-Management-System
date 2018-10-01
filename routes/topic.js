@@ -13,13 +13,39 @@ module.exports = function(){
 
  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
+
+
  router.get('/weather', function(req,res){
-   let temps = [36116,11758,07605];
-   for (var i = 0; i < temps.length; i++) {
-     let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
-   }
-   res.render('topic/weather',{montT: temps[0], weatherCondition:50});
- });
+   let temps = [36116,"07605",11758];
+   let url,url2,url3;
+   let monTT,monWC,IsliT,IsliWC,LeoT,LeoWC;
+
+   url = `http://api.openweathermap.org/data/2.5/weather?zip=${temps[0]}&units=imperial&appid=${apiKey}`
+   url2 =`http://api.openweathermap.org/data/2.5/weather?zip=${temps[1]}&units=imperial&appid=${apiKey}`
+   url3 = `http://api.openweathermap.org/data/2.5/weather?zip=${temps[2]}&units=imperial&appid=${apiKey}`
+
+   request(url, function (err, response, body) {
+   let weather = JSON.parse(body)
+   let temp = weather.main.temp
+   let location = weather.name;
+   let day_weather = weather.weather[0].main;
+   monTT = temp;
+   monWC = day_weather;
+   res.render('topic/weather',{monTT: monTT, monWC: monWC});
+    });
+
+    request(url2, function (err, response, body) {
+    let weather = JSON.parse(body)
+    let temp = weather.main.temp
+    let location = weather.name;
+    let day_weather = weather.weather[0].main;
+    IsliT = temp;
+    IsliWC = day_weather;
+    res.render('topic/weather',{IsliT: IsliT, IsliWC: IsliWC});
+     });
+
+
+});
 
 
 
@@ -40,7 +66,7 @@ router.post('/weather', function(req,res){
          let day_weather = weather.weather[0].main;
          let day_img = weather.weather[0].icon
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-
+         console.log(req.body.zipcode);
          if(day_weather == 'Clear'){
             res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-sunny"});
 
