@@ -17,34 +17,18 @@ module.exports = function(){
 
  router.get('/weather', function(req,res){
    let temps = [36116,"07605",11758];
-   let url,url2,url3;
-   let monTT,monWC,IsliT,IsliWC,LeoT,LeoWC;
+   let url
 
    url = `http://api.openweathermap.org/data/2.5/weather?zip=${temps[0]}&units=imperial&appid=${apiKey}`
-   url2 =`http://api.openweathermap.org/data/2.5/weather?zip=${temps[1]}&units=imperial&appid=${apiKey}`
-   url3 = `http://api.openweathermap.org/data/2.5/weather?zip=${temps[2]}&units=imperial&appid=${apiKey}`
 
    request(url, function (err, response, body) {
    let weather = JSON.parse(body)
    let temp = weather.main.temp
    let location = weather.name;
    let day_weather = weather.weather[0].main;
-   monTT = temp;
-   monWC = day_weather;
-   res.render('topic/weather',{monTT: monTT, monWC: monWC});
+
+   res.render('topic/weather',{temp: temp, weatherCondition: day_weather});
     });
-
-    request(url2, function (err, response, body) {
-    let weather = JSON.parse(body)
-    let temp = weather.main.temp
-    let location = weather.name;
-    let day_weather = weather.weather[0].main;
-    IsliT = temp;
-    IsliWC = day_weather;
-    res.render('topic/weather',{IsliT: IsliT, IsliWC: IsliWC});
-     });
-
-
 });
 
 
