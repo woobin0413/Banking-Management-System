@@ -17,8 +17,8 @@ module.exports = function(){
 
  router.get('/weather', function(req,res){
 
-   let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${apiKey}`
-
+   let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&mode=html&units=imperial&appid=${apiKey}`
+   //http://api.openweathermap.org/data/2.5/weather?id=5100399&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
     request(url, function (err, response, body) {
      let weather = JSON.parse(body)
      let t1,t2,t3,l1,l2,l3;
@@ -27,7 +27,7 @@ module.exports = function(){
        if(i==0) {
          t1 = weather.list[i].main.temp;
          l1 = weather.list[i].weather[0].main;
-
+         res.send(url)
        }
        if(i==1) {
          t2 = weather.list[i].main.temp;
@@ -41,7 +41,7 @@ module.exports = function(){
      // location = weather.list[i].name;
 
 
-    res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
+    // res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
      });
 });
 
