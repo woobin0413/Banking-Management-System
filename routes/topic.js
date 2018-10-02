@@ -16,19 +16,33 @@ module.exports = function(){
 
 
  router.get('/weather', function(req,res){
-   let temps = [36116,"07605",11758];
-   let url
 
-   url = `http://api.openweathermap.org/data/2.5/weather?zip=${temps[0]}&units=imperial&appid=${apiKey}`
+   let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${apiKey}`
 
-   request(url, function (err, response, body) {
-   let weather = JSON.parse(body)
-   let temp = weather.main.temp
-   let location = weather.name;
-   let day_weather = weather.weather[0].main;
+    request(url, function (err, response, body) {
+     let weather = JSON.parse(body)
+     let t1,t2,t3,l1,l2,l3;
 
-   res.render('topic/weather',{temp: temp, weatherCondition: day_weather});
-    });
+     for (var i = 0; i < 3; i++) {
+       if(i==0) {
+         t1 = weather.list[i].main.temp;
+         l1 = weather.list[i].weather[0].main;
+
+       }
+       if(i==1) {
+         t2 = weather.list[i].main.temp;
+         l2 = weather.list[i].weather[0].main;
+       }
+       else {
+         t3 = weather.list[i].main.temp;
+         l3 = weather.list[i].weather[0].main;
+       }
+     }
+     // location = weather.list[i].name;
+
+
+    res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
+     });
 });
 
 
