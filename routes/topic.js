@@ -4,7 +4,7 @@ module.exports = function(){
   const request = require('request');
 
   let apiKey = '74be192b0326b5dc2bb04884ab39d5e4';
-
+  let t1,t2,t3,l1,l2,l3;
 
 //celcious=> units=metric
  router.get('/homepage', function(req,res){
@@ -21,7 +21,7 @@ module.exports = function(){
 
     request(url, function (err, response, body) {
      let weather = JSON.parse(body)
-     let t1,t2,t3,l1,l2,l3;
+
 
      for (var i = 0; i < 3; i++) {
        if(i==0) {
@@ -45,8 +45,8 @@ module.exports = function(){
      });
 });
 
-
-//let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&mode=html&units=imperial&appid=${apiKey}`
+//img 형식으로 날씨및 정보나올수잇게
+//http://api.openweathermap.org/data/2.5/weather?zip=36116&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
 router.post('/weather', function(req,res){
   let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
