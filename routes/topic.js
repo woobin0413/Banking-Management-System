@@ -50,6 +50,7 @@ module.exports = function(){
 router.post('/weather', function(req,res){
   let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
+
      if(err){
        res.status(500).send('Internal Server Error');
        console.log('error: ' ,err);
@@ -76,7 +77,6 @@ router.post('/weather', function(req,res){
      }
 
    });
-
 })
 
   //               console.log(resp);
