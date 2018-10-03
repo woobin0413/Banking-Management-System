@@ -46,7 +46,7 @@ module.exports = function(){
 });
 
 
-
+//let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&mode=html&units=imperial&appid=${apiKey}`
 router.post('/weather', function(req,res){
   let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
@@ -64,7 +64,7 @@ router.post('/weather', function(req,res){
          let day_weather = weather.weather[0].main;
          let day_img = weather.weather[0].icon
          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-         console.log(req.body.zipcode);
+
          if(day_weather == 'Clear'){
             res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-sunny"});
 
