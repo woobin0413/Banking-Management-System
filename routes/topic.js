@@ -1,6 +1,8 @@
 module.exports = function(){
 
   var router = require('express').Router();
+  var http = require('http').Server(router);
+  var io = require('socket.io')(http);
   const request = require('request');
 
   let apiKey = '74be192b0326b5dc2bb04884ab39d5e4';
