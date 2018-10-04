@@ -44,7 +44,7 @@ module.exports = function(){
     res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
      });
 });
-
+//
 //img 형식으로 날씨및 정보나올수잇게
 //http://api.openweathermap.org/data/2.5/weather?zip=36116&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
 router.post('/weather', function(req,res){
@@ -79,18 +79,9 @@ router.post('/weather', function(req,res){
    });
 })
 
-  //               console.log(resp);
-  //               console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-  //               console.log("현재습도 : "+ resp.main.humidity);
-  //               console.log("날씨 : "+ resp.weather[0].main );
-  //               console.log("상세날씨설명 : "+ resp.weather[0].description );
-  //               console.log("날씨 이미지 : "+ resp.weather[0].icon );
-  //               console.log("바람   : "+ resp.wind.speed );
-  //               console.log("나라   : "+ resp.sys.country );
-  //               console.log("도시이름  : "+ resp.name );
-  //               console.log("구름  : "+ (resp.clouds.all) +"%" );
-
-
+router.get('/socket_io',function(req,res){
+  res.render('topic/socket_io');
+})
 
     return router;
 }
