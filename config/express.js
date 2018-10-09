@@ -4,7 +4,8 @@ module.exports =  function(){
   var conn = require('./config');
   var session = require('express-session');
   var MySQLStore = require('express-mysql-session')(session);
-
+  var multer  = require('multer')
+  var upload = multer({ dest: 'uploads/' })
 
   //같은 디렉토리는 ./해야한다.
   //express는 session 기능이없다. 그래서 express가

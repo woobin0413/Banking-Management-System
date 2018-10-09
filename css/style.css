@@ -54,7 +54,10 @@ padding: 15px;
 }
 .row.content {height: auto;}
 }
-.row{
+.col-sm-3{
+  padding: 2%;
   border: 2px solid red;
   border-radius: 25px;
+  text-align: center;
+  
 }

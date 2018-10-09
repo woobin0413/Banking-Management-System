@@ -39,6 +39,11 @@ nav.navbar.navbar-inverse
 block navigate
   div.container
     div.row
+      div(class="col-sm-6")
+        form(action='/profile', method='post', enctype='multipart/form-data')
+          input(type='file', name='avatar')
+
+    div.row
       div(class="col-sm-3" style="background-color:lavender;")
         p 1
       div(class="col-sm-3" style="background-color:lavender;")
@@ -47,3 +52,5 @@ block navigate
         p 3
       div(class="col-sm-3" style="background-color:lavender;")
         p 4
+    
+          
