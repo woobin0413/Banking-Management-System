@@ -54,3 +54,7 @@ padding: 15px;
 }
 .row.content {height: auto;}
 }
+.row{
+  border: 2px solid red;
+  border-radius: 25px;
+}
