@@ -18,7 +18,7 @@ module.exports =  function(){
 
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(express.static('/public/'));
+  app.use(express.static('/views/'));
   app.use(session({
     secret: '1234DSFs@adf1234!@#$asd',
     resave: false,
@@ -38,6 +38,69 @@ module.exports =  function(){
   //connect 아이디값의 별로 별도의 데이터를 서버에 저장해서 유지할수있다.
   //express-session이라는 모듈은 메모리에 저장을한다.
   //어플을 껏다 키면 세션 정보는 날라간다.
+
+
+  // Chatroom
+  var numUsers = 0;
+
+  io.on('connection', (socket) => {
+    var addedUser = false;
+
+    // when the client emits 'new message', this listens and executes
+    socket.on('new message', (data) => {
+      // we tell the client to execute 'new message'
+      socket.broadcast.emit('new message', {
+        username: socket.username,
+        message: data
+      });
+    });
+
+    // when the client emits 'add user', this listens and executes
+    socket.on('add user', (username) => {
+      if (addedUser) return;
+
+      // we store the username in the socket session for this client
+      socket.username = username;
+      ++numUsers;
+      addedUser = true;
+      socket.emit('login', {
+        numUsers: numUsers
+      });
+      // echo globally (all clients) that a person has connected
+      socket.broadcast.emit('user joined', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    });
+
+    // when the client emits 'typing', we broadcast it to others
+    socket.on('typing', () => {
+      socket.broadcast.emit('typing', {
+        username: socket.username
+      });
+    });
+
+    // when the client emits 'stop typing', we broadcast it to others
+    socket.on('stop typing', () => {
+      socket.broadcast.emit('stop typing', {
+        username: socket.username
+      });
+    });
+
+    // when the user disconnects.. perform this
+    socket.on('disconnect', () => {
+      if (addedUser) {
+        --numUsers;
+
+        // echo globally that this client has left
+        socket.broadcast.emit('user left', {
+          username: socket.username,
+          numUsers: numUsers
+        });
+      }
+    });
+  });
+
 
   return app;
 }
