@@ -18,7 +18,7 @@ module.exports =  function(){
 
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(express.static('/views/'));
+  app.use(express.static('views'));
   app.use(session({
     secret: '1234DSFs@adf1234!@#$asd',
     resave: false,
