@@ -4,12 +4,18 @@ module.exports =  function(){
   var conn = require('./config');
   var session = require('express-session');
   var MySQLStore = require('express-mysql-session')(session);
+
+
   //같은 디렉토리는 ./해야한다.
   //express는 session 기능이없다. 그래서 express가
   //세션을 처리하기위하여 express-session이라는 모듈을 사용한다.
   //기본적으로 메모리에 저장 하지만 그 기능을 다른곳으로 교체 (파일) 할때 이 모듈을 쓴다.
   var bodyParser = require('body-parser');
   var app = express();
+  var path = require('path');
+  var server = require('http').createServer(app);
+  var io = require('socket.io')(server);
+
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.static('/public/'));
