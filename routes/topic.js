@@ -3,7 +3,7 @@ module.exports = function(){
   var router = require('express').Router();
   var config = require('../config/config.json');
   const request = require('request');
-
+  const apiKey = "74be192b0326b5dc2bb04884ab39d5e4";
   let t1,t2,t3,l1,l2,l3;
 
 //celcious=> units=metric
@@ -17,7 +17,7 @@ module.exports = function(){
 
  router.get('/weather', function(req,res){
 
-   let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${config.config.apiKey}`
+   let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${apiKey}`
 
     request(url, function (err, response, body) {
      let weather = JSON.parse(body)
@@ -48,7 +48,7 @@ module.exports = function(){
 //img 형식으로 날씨및 정보나올수잇게
 //http://api.openweathermap.org/data/2.5/weather?zip=36116&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
 router.post('/weather', function(req,res){
-  let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${config.config.apiKey}`
+  let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${apiKey}`
   request(url, function (err, response, body) {
 
      if(err){
