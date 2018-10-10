@@ -4,9 +4,7 @@ module.exports =  function(){
   var conn = require('./config');
   var session = require('express-session');
   var MySQLStore = require('express-mysql-session')(session);
-  var multer  = require('multer')
-  var upload = multer({ dest: 'uploads/' })
-
+  
   //같은 디렉토리는 ./해야한다.
   //express는 session 기능이없다. 그래서 express가
   //세션을 처리하기위하여 express-session이라는 모듈을 사용한다.
@@ -14,8 +12,6 @@ module.exports =  function(){
   var bodyParser = require('body-parser');
   var app = express();
   var path = require('path');
-  var server = require('http').createServer(app);
-  var io = require('socket.io')(server);
 
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,67 +36,6 @@ module.exports =  function(){
   //express-session이라는 모듈은 메모리에 저장을한다.
   //어플을 껏다 키면 세션 정보는 날라간다.
 
-
-  // Chatroom
-  var numUsers = 0;
-
-  io.on('connection', (socket) => {
-    var addedUser = false;
-
-    // when the client emits 'new message', this listens and executes
-    socket.on('new message', (data) => {
-      // we tell the client to execute 'new message'
-      socket.broadcast.emit('new message', {
-        username: socket.username,
-        message: data
-      });
-    });
-
-    // when the client emits 'add user', this listens and executes
-    socket.on('add user', (username) => {
-      if (addedUser) return;
-
-      // we store the username in the socket session for this client
-      socket.username = username;
-      ++numUsers;
-      addedUser = true;
-      socket.emit('login', {
-        numUsers: numUsers
-      });
-      // echo globally (all clients) that a person has connected
-      socket.broadcast.emit('user joined', {
-        username: socket.username,
-        numUsers: numUsers
-      });
-    });
-
-    // when the client emits 'typing', we broadcast it to others
-    socket.on('typing', () => {
-      socket.broadcast.emit('typing', {
-        username: socket.username
-      });
-    });
-
-    // when the client emits 'stop typing', we broadcast it to others
-    socket.on('stop typing', () => {
-      socket.broadcast.emit('stop typing', {
-        username: socket.username
-      });
-    });
-
-    // when the user disconnects.. perform this
-    socket.on('disconnect', () => {
-      if (addedUser) {
-        --numUsers;
-
-        // echo globally that this client has left
-        socket.broadcast.emit('user left', {
-          username: socket.username,
-          numUsers: numUsers
-        });
-      }
-    });
-  });
 
 
   return app;

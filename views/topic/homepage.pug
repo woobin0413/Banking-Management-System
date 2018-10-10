@@ -37,12 +37,17 @@ nav.navbar.navbar-inverse
             span.glyphicon.glyphicon-log-in
             |  Login
 block navigate
+
+      
+      
+      
   div.container
     div.row
-      div(class="col-sm-6")
-        form(action='/profile', method='post', enctype='multipart/form-data')
-          input(type='file', name='avatar')
-
+      form(action='/upload' method='post' enctype="multipart/form-data")
+        input(type='file' name='userfile')
+        input(type='submit')
+      p
+        
     div.row
       div(class="col-sm-3" style="background-color:lavender;")
         p 1
@@ -52,5 +57,7 @@ block navigate
         p 3
       div(class="col-sm-3" style="background-color:lavender;")
         p 4
+      
+      
     
           

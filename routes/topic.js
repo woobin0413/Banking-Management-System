@@ -2,6 +2,9 @@ module.exports = function(){
 
   var router = require('express').Router();
   var config = require('../config/config.json');
+  var multer  = require('multer')
+  var upload = multer({ dest: 'uploads/' })
+
   const request = require('request');
   const apiKey = "74be192b0326b5dc2bb04884ab39d5e4";
   let t1,t2,t3,l1,l2,l3;
@@ -10,6 +13,12 @@ module.exports = function(){
  router.get('/homepage', function(req,res){
    res.render('topic/homepage');
  });
+ router.post('/upload', function(req, res){
+  res.send('업로드 성공!');
+});
+   // req.file 은 `avatar` 라는 필드의 파일 정보입니다.
+  // 텍스트 필드가 있는 경우, req.body가 이를 포함할 것입니다.
+
 
  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
