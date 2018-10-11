@@ -15,7 +15,6 @@ module.exports = function(){
 
   var upload = multer({ storage: storage })
   const request = require('request');
-  // const apiKey = "74be192b0326b5dc2bb04884ab39d5e4";
   let t1,t2,t3,l1,l2,l3;
 
   //celcious=> units=metric
