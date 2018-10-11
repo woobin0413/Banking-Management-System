@@ -3,8 +3,6 @@ module.exports = function(){
   var router = require('express').Router();
   var config = require('../config/config.json');
   var conn = require('../config/config');
-  var session = require('express-session');
-  var MySQLStore = require('express-mysql-session')(session);
   var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
   var storage = multer.diskStorage({
     //upload 할떄마다 이름이 랜덤으로 설정되있는데 그것을 원래이름이나 위치를 다시 변경시 필요사항
@@ -24,15 +22,47 @@ module.exports = function(){
   router.get('/homepage', function(req,res){
     res.render('topic/homepage');
   });
-  router.post('/upload', upload.single('userfile'), function(req, res){
-    if(req.file) {
-      conn
-      res.render('topic/homepage', {fileResult: req.file.filename})
-    } else {
-      res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
-    }
-    console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+
+  router.get('/file_upload', function(req,res){
+    res.render('topic/file_upload');
   });
+
+  router.post('/file_insert',function(req,res){
+    if(req.method == 'POST'){
+     var post  = req.body;
+     var name= post.user_name;
+     var pass= post.password;
+     var fname= post.first_name;
+     var lname= post.last_name;
+     var mob= post.mob_no;
+
+     if(!req.files){
+       return res.status(400).send('No files were uploaded.');
+     }
+     var file = req.files.uploaded_image;
+		 var img_name=file.name;
+
+    }
+  })
+
+  // router.post('/upload', upload.single('userfile'), function(req, res){
+  //   if(req.file) {
+  //     var sql = 'INSERT INTO TOPIC (title,description,author) VALUES (?,?,?)';
+  //     var params = [req.body.userfile,'Test','Test']
+  //     conn.query(sql,params,function(err,row,field){
+  //       if(err){
+  //         res.status(500).send('Internal Server Error');
+  //         console.log(err);
+  //       } else {
+  //         res.render('topic/homepage', {fileResult: "File has been uploaded!"});
+  //     }
+  //   });
+  //
+  //   } else {
+  //     res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
+  //   }
+  //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+  // });
 
   // req.file 은 `avatar` 라는 필드의 파일 정보입니다.
   // 텍스트 필드가 있는 경우, req.body가 이를 포함할 것입니다.

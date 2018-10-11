@@ -4,7 +4,7 @@ module.exports =  function(){
   var conn = require('./config');
   var session = require('express-session');
   var MySQLStore = require('express-mysql-session')(session);
-  
+  var fileUpload = require('express-fileupload');
   //같은 디렉토리는 ./해야한다.
   //express는 session 기능이없다. 그래서 express가
   //세션을 처리하기위하여 express-session이라는 모듈을 사용한다.
@@ -14,6 +14,7 @@ module.exports =  function(){
   var path = require('path');
 
   app.locals.pretty = true;
+  app.use(fileUpload());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.static('views'));
   app.use(session({
