@@ -38,17 +38,15 @@ nav.navbar.navbar-inverse
             |  Login
 block navigate
 
-      
-      
-      
+
   div.container
     div.row
       form(action='/upload' method='post' enctype="multipart/form-data")
-        input(type='file' name='userfile')
+        input(class=".btn btn-primary" type='file' name='userfile')
         input(type='submit')
       p= fileResult
         
-    div.row
+    div.jumbotron
       div(class="col-sm-3" style="background-color:lavender;")
         p 1
       div(class="col-sm-3" style="background-color:lavender;")
@@ -57,7 +55,7 @@ block navigate
         p 3
       div(class="col-sm-3" style="background-color:lavender;")
         p 4
-      
-      
     
-          
+    
+  
+        

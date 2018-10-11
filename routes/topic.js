@@ -2,6 +2,9 @@ module.exports = function(){
 
   var router = require('express').Router();
   var config = require('../config/config.json');
+  var conn = require('../config/config');
+  var session = require('express-session');
+  var MySQLStore = require('express-mysql-session')(session);
   var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
   var storage = multer.diskStorage({
     //upload 할떄마다 이름이 랜덤으로 설정되있는데 그것을 원래이름이나 위치를 다시 변경시 필요사항
@@ -23,6 +26,7 @@ module.exports = function(){
   });
   router.post('/upload', upload.single('userfile'), function(req, res){
     if(req.file) {
+      conn
       res.render('topic/homepage', {fileResult: req.file.filename})
     } else {
       res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
@@ -61,9 +65,6 @@ module.exports = function(){
           l3 = weather.list[i].weather[0].main;
         }
       }
-      // location = weather.list[i].name;
-
-
       res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
     });
   });

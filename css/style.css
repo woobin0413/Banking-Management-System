@@ -1,29 +1,26 @@
 
 /* centered columns styles */
 .row-centered {
-    text-align:center;
+  text-align:center;
 
 
 }
 .col-centered {
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
 
-    /* inline-block space fix */
+  /* inline-block space fix */
 
-    text-align: center;
-    background-color: rgba(0, 255, 209, 0.77);
-    opacity:0.9;
-    padding: 10%;
+  text-align: center;
+  background-color: rgba(0, 255, 209, 0.77);
+  opacity:0.9;
+  padding: 10%;
 }
 .containerBG {
   display: block; // if it is not a block element
   position: relative;
   overflow: hidden;
-}
-.container {
-  padding: 8%;
 }
 
 .profilePic {
@@ -37,27 +34,47 @@
 .row.content {height: 1500px}
 /* Set gray background color and 100% height */
 .sidenav {
-background-color: #f1f1f1;
-height: 100%;
+  background-color: #f1f1f1;
+  height: 100%;
 }
 /* Set black background color, white text and some padding */
 footer {
-background-color: #555;
-color: white;
-padding: 15px;
+  background-color: #555;
+  color: white;
+  padding: 15px;
 }
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
-.sidenav {
-height: auto;
-padding: 15px;
-}
-.row.content {height: auto;}
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height: auto;}
 }
 .col-sm-3{
-  padding: 2%;
+
   border: 2px solid red;
   border-radius: 25px;
   text-align: center;
 
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }
