@@ -7,7 +7,7 @@ module.exports = function(){
   var storage = multer.diskStorage({
     //upload 할떄마다 이름이 랜덤으로 설정되있는데 그것을 원래이름이나 위치를 다시 변경시 필요사항
     destination: function (req, file, cb) {
-      cb(null, 'uploads/') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+      cb(null, 'images/upload_images/') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname) // cb 콜백함수를 통해 전송된 파일 이름 설정
@@ -41,33 +41,35 @@ module.exports = function(){
       if(!req.files){
         return res.status(400).send('No files were uploaded.');
       }
-
+      // app.post('/upload', upload.single('userfile'), function(req, res){
+      //   res.send('Uploaded! : '+req.file); // object를 리턴함
+      //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+      // });
       else {
         var file = req.files.uploaded_image;
         var img_name=file.name;
-
+        var message = '';
         if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-          file.mv('/images/upload_images/'+file.name, function(err) {
-            if(err){
-              console.log(err);
-              res.status(500).send('Internal Server Error');
-            }
-            else {
-              var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES"
-              sql += "('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
-
+              var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
               conn.query(sql, function(err,rows,fields){
                 if(err){
                   console.log(err);
                   res.status(500).send('Internal Server Error');
                 } else {
-                  res.redirect('profile/'+result.insertId);
+                  res.send('uploaded');
+                  console.log(rows);
                 }
               });
-            }
-          });
+            } else {
+          message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+          res.render('/file_upload',{message: message});
         }
-      }});
+      }
+
+  } else {
+      res.render('/file_upload');
+  }
+});
 
 
       // router.post('/upload', upload.single('userfile'), function(req, res){
