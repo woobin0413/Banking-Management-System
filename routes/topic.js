@@ -32,122 +32,134 @@ module.exports = function(){
   router.post('/file_insert',function(req,res){
     if(req.method == 'POST'){
 
-     var name= req.body.user_name;
-     var pass= req.body.password;
-     var fname= req.body.first_name;
-     var lname= req.body.last_name;
-     var mob= req.body.mob_no;
+      var name= req.body.user_name;
+      var pass= req.body.password;
+      var fname= req.body.first_name;
+      var lname= req.body.last_name;
+      var mob= req.body.mob_no;
 
-     if(!req.files){
-       return res.status(400).send('No files were uploaded.');
-     }
-
-
-    else {
-      var file = req.files.uploaded_image;
-      var img_name=file.name;
-      var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')";
-
-     conn.query(sql, function(err,rows,fields){
-       if(err){
-         console.log(err);
-       } else {
-         console.log(rows);
+      if(!req.files){
+        return res.status(400).send('No files were uploaded.');
       }
-    });
-  }
-}});
 
-  // router.post('/upload', upload.single('userfile'), function(req, res){
-  //   if(req.file) {
-  //     var sql = 'INSERT INTO TOPIC (title,description,author) VALUES (?,?,?)';
-  //     var params = [req.body.userfile,'Test','Test']
-  //     conn.query(sql,params,function(err,row,field){
-  //       if(err){
-  //         res.status(500).send('Internal Server Error');
-  //         console.log(err);
-  //       } else {
-  //         res.render('topic/homepage', {fileResult: "File has been uploaded!"});
-  //     }
-  //   });
-  //
-  //   } else {
-  //     res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
-  //   }
-  //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-  // });
+      else {
+        var file = req.files.uploaded_image;
+        var img_name=file.name;
 
-  // req.file 은 `avatar` 라는 필드의 파일 정보입니다.
-  // 텍스트 필드가 있는 경우, req.body가 이를 포함할 것입니다.
+        if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+          file.mv('/images/upload_images/'+file.name, function(err) {
+            if(err){
+              console.log(err);
+              res.status(500).send('Internal Server Error');
+            }
+            else {
+              var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES"
+              sql += "('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
 
-
-  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
-  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
-
-
-  router.get('/weather', function(req,res){
-
-    let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${config.apiKey}`
-
-    request(url, function (err, response, body) {
-      let weather = JSON.parse(body)
-
-
-      for (var i = 0; i < 3; i++) {
-        if(i==0) {
-          t1 = weather.list[i].main.temp;
-          l1 = weather.list[i].weather[0].main;
-
+              conn.query(sql, function(err,rows,fields){
+                if(err){
+                  console.log(err);
+                  res.status(500).send('Internal Server Error');
+                } else {
+                  res.redirect('profile/'+result.insertId);
+                }
+              });
+            }
+          });
         }
-        if(i==1) {
-          t2 = weather.list[i].main.temp;
-          l2 = weather.list[i].weather[0].main;
-        }
-        else {
-          t3 = weather.list[i].main.temp;
-          l3 = weather.list[i].weather[0].main;
-        }
-      }
-      res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
-    });
-  });
-  //
-  //img 형식으로 날씨및 정보나올수잇게
-  //http://api.openweathermap.org/data/2.5/weather?zip=36116&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
-  router.post('/weather', function(req,res){
-    let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${config.apiKey}`
-    request(url, function (err, response, body) {
+      }});
 
-      if(err){
-        res.status(500).send('Internal Server Error');
-        console.log('error: ' ,err);
 
-      } else {
-        if(req.body.zipcode.length != 5) {
-          res.render('topic/weather', {text: "Zipcode does not exist"})
-        } else {
+      // router.post('/upload', upload.single('userfile'), function(req, res){
+      //   if(req.file) {
+      //     var sql = 'INSERT INTO TOPIC (title,description,author) VALUES (?,?,?)';
+      //     var params = [req.body.userfile,'Test','Test']
+      //     conn.query(sql,params,function(err,row,field){
+      //       if(err){
+      //         res.status(500).send('Internal Server Error');
+      //         console.log(err);
+      //       } else {
+      //         res.render('topic/homepage', {fileResult: "File has been uploaded!"});
+      //     }
+      //   });
+      //
+      //   } else {
+      //     res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
+      //   }
+      //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+      // });
+
+      // req.file 은 `avatar` 라는 필드의 파일 정보입니다.
+      // 텍스트 필드가 있는 경우, req.body가 이를 포함할 것입니다.
+
+
+      //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
+      //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
+
+
+      router.get('/weather', function(req,res){
+
+        let url = `http://api.openweathermap.org/data/2.5/group?id=5106834,5100399,4076784&units=imperial&appid=${config.apiKey}`
+
+        request(url, function (err, response, body) {
           let weather = JSON.parse(body)
-          let temp = weather.main.temp
-          let location = weather.name;
-          let day_weather = weather.weather[0].main;
-          let day_img = weather.weather[0].icon
-          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
-          if(day_weather == 'Clear'){
-            res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-sunny"});
+
+          for (var i = 0; i < 3; i++) {
+            if(i==0) {
+              t1 = weather.list[i].main.temp;
+              l1 = weather.list[i].weather[0].main;
+
+            }
+            if(i==1) {
+              t2 = weather.list[i].main.temp;
+              l2 = weather.list[i].weather[0].main;
+            }
+            else {
+              t3 = weather.list[i].main.temp;
+              l3 = weather.list[i].weather[0].main;
+            }
+          }
+          res.render('topic/weather',{t1: t1, t2: t2,t3:t3,l1:l1,l2:l2,l3:l3});
+        });
+      });
+      //
+      //img 형식으로 날씨및 정보나올수잇게
+      //http://api.openweathermap.org/data/2.5/weather?zip=36116&mode=html&units=imperial&appid=74be192b0326b5dc2bb04884ab39d5e4
+      router.post('/weather', function(req,res){
+        let url = `http://api.openweathermap.org/data/2.5/weather?zip=${req.body.zipcode}&units=imperial&appid=${config.apiKey}`
+        request(url, function (err, response, body) {
+
+          if(err){
+            res.status(500).send('Internal Server Error');
+            console.log('error: ' ,err);
 
           } else {
-            res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-lightning"});
+            if(req.body.zipcode.length != 5) {
+              res.render('topic/weather', {text: "Zipcode does not exist"})
+            } else {
+              let weather = JSON.parse(body)
+              let temp = weather.main.temp
+              let location = weather.name;
+              let day_weather = weather.weather[0].main;
+              let day_img = weather.weather[0].icon
+              let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
+              if(day_weather == 'Clear'){
+                res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-sunny"});
+
+              } else {
+                res.render('topic/weather', {text: message + " " + day_weather, weathercond: "day-lightning"});
+
+              }
+            }
           }
-        }
-      }
 
-    });
-  })
+        });
+      })
 
-  router.get('/socket_io',function(req,res){
-    res.send('socket_io');
-  });
-  return router;
-}
+      router.get('/socket_io',function(req,res){
+        res.send('socket_io');
+      });
+      return router;
+    }
