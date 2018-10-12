@@ -15,6 +15,8 @@ module.exports = function(){
   });
 
   var upload = multer({ storage: storage })
+
+
   const request = require('request');
   let t1,t2,t3,l1,l2,l3;
 
@@ -29,21 +31,32 @@ module.exports = function(){
 
   router.post('/file_insert',function(req,res){
     if(req.method == 'POST'){
-     var post  = req.body;
-     var name= post.user_name;
-     var pass= post.password;
-     var fname= post.first_name;
-     var lname= post.last_name;
-     var mob= post.mob_no;
+
+     var name= req.body.user_name;
+     var pass= req.body.password;
+     var fname= req.body.first_name;
+     var lname= req.body.last_name;
+     var mob= req.body.mob_no;
 
      if(!req.files){
        return res.status(400).send('No files were uploaded.');
      }
-     var file = req.files.uploaded_image;
-		 var img_name=file.name;
 
-    }
-  })
+
+    else {
+      var file = req.files.uploaded_image;
+      var img_name=file.name;
+      var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')";
+
+     conn.query(sql, function(err,rows,fields){
+       if(err){
+         console.log(err);
+       } else {
+         console.log(rows);
+      }
+    });
+  }
+}});
 
   // router.post('/upload', upload.single('userfile'), function(req, res){
   //   if(req.file) {
