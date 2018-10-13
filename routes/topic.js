@@ -3,20 +3,6 @@ module.exports = function(){
   var router = require('express').Router();
   var config = require('../config/config.json');
   var conn = require('../config/config');
-  var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
-  var storage = multer.diskStorage({
-    //upload 할떄마다 이름이 랜덤으로 설정되있는데 그것을 원래이름이나 위치를 다시 변경시 필요사항
-    destination: function (req, file, cb) {
-      cb(null, 'images/upload_images/') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname) // cb 콜백함수를 통해 전송된 파일 이름 설정
-    }
-  });
-
-  var upload = multer({ storage: storage })
-
-
   const request = require('request');
   let t1,t2,t3,l1,l2,l3;
 
@@ -24,80 +10,6 @@ module.exports = function(){
   router.get('/homepage', function(req,res){
     res.render('topic/homepage');
   });
-
-  router.get('/file_upload', function(req,res){
-    res.render('topic/file_upload');
-  });
-
-//   router.post('/file_insert',function(req,res){
-//     if(req.method == 'POST'){
-//
-//       var name= req.body.user_name;
-//       var pass= req.body.password;
-//       var fname= req.body.first_name;
-//       var lname= req.body.last_name;
-//       var mob= req.body.mob_no;
-//
-//       if(!req.files){
-//         return res.status(400).send('No files were uploaded.');
-//       }
-//       // app.post('/upload', upload.single('userfile'), function(req, res){
-//       //   res.send('Uploaded! : '+req.file); // object를 리턴함
-//       //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-//       // });
-//       else {
-//         var file = req.files.uploaded_image;
-//         var img_name=file.name;
-//         var message = '';
-//         if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-//               var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
-//               conn.query(sql, function(err,rows,fields){
-//                 if(err){
-//                   console.log(err);
-//                   res.status(500).send('Internal Server Error');
-//                 } else {
-//                   res.send('uploaded');
-//                   console.log(rows);
-//                 }
-//               });
-//             } else {
-//           message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-//           res.render('/file_upload',{message: message});
-//         }
-//       }
-//
-//   } else {
-//       res.render('/file_upload');
-//   }
-// });
-router.post('/upload', upload.single('userfile'),function(req,res){
-  res.send('Uploaded! : '+req.file); // object를 리턴함
-  console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-});
-
-
-      // router.post('/upload', upload.single('userfile'), function(req, res){
-      //   if(req.file) {
-      //     var sql = 'INSERT INTO TOPIC (title,description,author) VALUES (?,?,?)';
-      //     var params = [req.body.userfile,'Test','Test']
-      //     conn.query(sql,params,function(err,row,field){
-      //       if(err){
-      //         res.status(500).send('Internal Server Error');
-      //         console.log(err);
-      //       } else {
-      //         res.render('topic/homepage', {fileResult: "File has been uploaded!"});
-      //     }
-      //   });
-      //
-      //   } else {
-      //     res.render('topic/homepage', {fileResult: `NO ATTACHMENT FOUND!!`});
-      //   }
-      //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-      // });
-
-      // req.file 은 `avatar` 라는 필드의 파일 정보입니다.
-      // 텍스트 필드가 있는 경우, req.body가 이를 포함할 것입니다.
-
 
       //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
       //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
