@@ -29,46 +29,50 @@ module.exports = function(){
     res.render('topic/file_upload');
   });
 
-  router.post('/file_insert',function(req,res){
-    if(req.method == 'POST'){
-
-      var name= req.body.user_name;
-      var pass= req.body.password;
-      var fname= req.body.first_name;
-      var lname= req.body.last_name;
-      var mob= req.body.mob_no;
-
-      if(!req.files){
-        return res.status(400).send('No files were uploaded.');
-      }
-      // app.post('/upload', upload.single('userfile'), function(req, res){
-      //   res.send('Uploaded! : '+req.file); // object를 리턴함
-      //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-      // });
-      else {
-        var file = req.files.uploaded_image;
-        var img_name=file.name;
-        var message = '';
-        if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-              var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
-              conn.query(sql, function(err,rows,fields){
-                if(err){
-                  console.log(err);
-                  res.status(500).send('Internal Server Error');
-                } else {
-                  res.send('uploaded');
-                  console.log(rows);
-                }
-              });
-            } else {
-          message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-          res.render('/file_upload',{message: message});
-        }
-      }
-
-  } else {
-      res.render('/file_upload');
-  }
+//   router.post('/file_insert',function(req,res){
+//     if(req.method == 'POST'){
+//
+//       var name= req.body.user_name;
+//       var pass= req.body.password;
+//       var fname= req.body.first_name;
+//       var lname= req.body.last_name;
+//       var mob= req.body.mob_no;
+//
+//       if(!req.files){
+//         return res.status(400).send('No files were uploaded.');
+//       }
+//       // app.post('/upload', upload.single('userfile'), function(req, res){
+//       //   res.send('Uploaded! : '+req.file); // object를 리턴함
+//       //   console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+//       // });
+//       else {
+//         var file = req.files.uploaded_image;
+//         var img_name=file.name;
+//         var message = '';
+//         if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+//               var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`image`,`mob_no`, `user_name` ,`password`) VALUES ('" + fname + "','" + lname + "','" + img_name + "','" + mob + "','" + name + "','" + pass + "')"
+//               conn.query(sql, function(err,rows,fields){
+//                 if(err){
+//                   console.log(err);
+//                   res.status(500).send('Internal Server Error');
+//                 } else {
+//                   res.send('uploaded');
+//                   console.log(rows);
+//                 }
+//               });
+//             } else {
+//           message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+//           res.render('/file_upload',{message: message});
+//         }
+//       }
+//
+//   } else {
+//       res.render('/file_upload');
+//   }
+// });
+router.post('/upload', upload.single('userfile'),function(req,res){
+  res.send('Uploaded! : '+req.file); // object를 리턴함
+  console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
 });
 
 
