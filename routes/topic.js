@@ -8,15 +8,16 @@ module.exports = function() {
 
   let t1, t2, t3, l1, l2, l3;
   var multer = require('multer'); // multer모듈 적용 (for 파일업로드)
-  var storage = multer.diskStorage({
+  var _storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/tmp/my-uploads')
+      cb(null, 'uploads/')
     },
+    //이걸 사용해 저장될때 랜덤값이 아닌 이름으로 저장한다.
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+      cb(null, file.originalname);
     }
   });
-  var upload = multer({storage: storage});
+  var upload = multer({storage: _storage});
   var fs = require('fs');
   // 입력한 파일이 uploads/ 폴더 내에 저장된다.
   // multer라는 모듈이 함수라서 함수에 옵션을 줘서 실행을 시키면, 해당 함수는 미들웨어를 리턴한다.

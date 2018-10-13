@@ -27,6 +27,9 @@ module.exports =  function(){
       database: conn.config.database
   })
 }));
+  //이런식으로 유저가 로그인시
+  //http://localhost:3000/user/Picture1.png 이렇게 사진을 볼수있다.
+  app.use('/user', express.static('uploads'));
   app.use(express.static('views'));
   app.set('view engine', 'pug');
   app.set('views','./views');
