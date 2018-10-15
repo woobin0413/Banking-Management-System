@@ -35,7 +35,7 @@ module.exports = function() {
   router.post('/upload',upload.single('userfile'),function(req,res){
     var file = req.file.filename;
     var sql = 'INSERT INTO users_image (image,user_name)';
-    sql += 'VALUES(?,?,?)';
+    sql += 'VALUES(?,?)';
     var params = [file,'temp'];
 		// var img_name=file.name;
     if(req.file.mimetype == "image/jpeg" ||req.file.mimetype == "image/png"||req.file.mimetype == "image/gif" ){
