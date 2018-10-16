@@ -27,20 +27,23 @@ module.exports = function() {
     res.render('topic/homepage');
   });
 
-  router.get(['/upload', '/upload/:id'],function(req,res){
-    var sql = 'SELECT * FROM users_image WHERE id = ?';
-    var params = [id];
+  router.get(['/upload'],function(req,res){
+    // var sql = 'SELECT * FROM users_image WHERE id = ?';
+    // // var params = [id];
 
     res.render('topic/upload')
   });
 
   //upload.single()은 middle-ware
   router.post('/upload',upload.single('userfile'),function(req,res){
-    var file = req.file.filename;
-    var sql = 'INSERT INTO users_image (image,user_name)';
-    sql += 'VALUES(?,?)';
-    var params = [file,'temp'];
-		// var img_name=file.name;
+    if(req.file == null) {
+      res.render('topic/upload', {result: "No attachment found!!"});
+    } else {
+      var file = req.file.filename;
+      var sql = 'INSERT INTO users_image (image,user_name)';
+      sql += 'VALUES(?,?)';
+      var params = [file,'temp'];
+
       if(req.file.mimetype == "image/jpeg" ||req.file.mimetype == "image/png"||req.file.mimetype == "image/gif" ){
         conn.query(sql,params,function(err,row,field){
           if(err){
@@ -53,11 +56,10 @@ module.exports = function() {
     else {
       res.render('topic/upload', {result: "This is not an image type!!"});
     }
-
-
-});
-  //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
-  //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
+    }
+  });
+    //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
+    //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
 
 
   router.get('/weather', function(req, res) {
