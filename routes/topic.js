@@ -27,7 +27,10 @@ module.exports = function() {
     res.render('topic/homepage');
   });
 
-  router.get('/upload', function(req,res){
+  router.get(['/upload', '/upload/:id'],function(req,res){
+    var sql = 'SELECT * FROM users_image WHERE id = ?';
+    var params = [id];
+
     res.render('topic/upload')
   });
 
@@ -50,6 +53,7 @@ module.exports = function() {
     else {
       res.render('topic/upload', {result: "This is not an image type!!"});
     }
+
 
 });
   //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
