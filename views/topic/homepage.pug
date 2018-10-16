@@ -50,15 +50,23 @@ block navigate
     //-   p= fileResult
     //- 
     div.jumbotron
-      div(class="col-sm-3" style="background-color:lavender;")
-        p 1
-      div(class="col-sm-3" style="background-color:lavender;")
-        p 2
-      div(class="col-sm-3" style="background-color:lavender;")
-        p 3
-      div(class="col-sm-3" style="background-color:lavender;")
-        p 4
-    
+      ul#account
+        if user
+        li
+          a(href='/auth/logout') logout
+          h1 Welcome #{user.displayName}
+        else
+          li
+            a(href='/auth/register') register
+          li
+            a(href='/auth/login') Login
+      h1
+        a(href='/topic') Server Side JavaScript
+      ul
+        each topic in topics
+          li
+            a(href='/topic/'+topic.id)= topic.title
+
     
   
         
