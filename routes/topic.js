@@ -38,23 +38,20 @@ module.exports = function() {
     sql += 'VALUES(?,?)';
     var params = [file,'temp'];
 		// var img_name=file.name;
-    if(req.file.mimetype == "image/jpeg" ||req.file.mimetype == "image/png"||req.file.mimetype == "image/gif" ){
-      conn.query(sql,params,function(err,row,field){
-        if(err){
-          res.status(500).send('Internal Server Error');
-          console.log(err);
-        } else {
-          res.render('topic/upload', {result: "UPLOADED!!"});
-    }
-    // res.send('upload : ' + req.file.filename)
-    // console.log(req.file);
-  });
-  }
+      if(req.file.mimetype == "image/jpeg" ||req.file.mimetype == "image/png"||req.file.mimetype == "image/gif" ){
+        conn.query(sql,params,function(err,row,field){
+          if(err){
+            res.status(500).send('Internal Server Error');
+            console.log(err);
+          } else {
+            res.render('topic/upload', {result: file + " UPLOADED!!"});
+          }
+    })}
     else {
-      console.log("not an image file");
+      res.render('topic/upload', {result: "This is not an image type!!"});
     }
-  });
 
+});
   //pug 나 html 에서 데이터를 미리 보여줄때 Get을 사용하며
   //반대로 search 창이나 form 창에서 데이터값을 입력후 엔터 누르면 post방식을이용
 
