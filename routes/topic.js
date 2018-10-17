@@ -24,6 +24,10 @@ module.exports = function() {
   // 입력한 파일이 uploads/ 폴더 내에 저장된다.
   // multer라는 모듈이 함수라서 함수에 옵션을 줘서 실행을 시키면, 해당 함수는 미들웨어를 리턴한다.
   router.get('/homepage', function(req, res) {
+    var sql = 'SELECT * FROM topic';
+    conn.query(sql,function(err,topics,field){
+    var id = req.params.id;
+  
     res.render('topic/homepage');
   });
 

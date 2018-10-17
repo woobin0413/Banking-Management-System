@@ -52,9 +52,9 @@ block navigate
     div.jumbotron
       ul#account
         if user
-        li
-          a(href='/auth/logout') logout
-          h1 Welcome #{user.displayName}
+          li
+            a(href='/auth/logout') logout
+            h1 Welcome #{user.displayName}
         else
           li
             a(href='/auth/register') register
