@@ -50,23 +50,9 @@ block navigate
     //-   p= fileResult
     //- 
     div.jumbotron
-      ul#account
-        if user
-          li
-            a(href='/auth/logout') logout
-            h1 Welcome #{user.displayName}
-        else
-          li
-            a(href='/auth/register') register
-          li
-            a(href='/auth/login') Login
-      h1
-        a(href='/topic') Server Side JavaScript
       ul
         each topic in topics
           li
-            a(href='/topic/'+topic.id)= topic.title
-
-    
+            a(href='/topic/'+topic.id)= topic.image
   
         
