@@ -41,7 +41,7 @@ nav.navbar.navbar-inverse
             |  Login
 block navigate
 
-
+  
   div.container
     //- div.row
     //-   form(action='/upload' method='post' enctype="multipart/form-data")
@@ -50,6 +50,7 @@ block navigate
     //-   p= fileResult
     //- 
     div.jumbotron
+      h1= user
       ul
         each topic in topics
           li
