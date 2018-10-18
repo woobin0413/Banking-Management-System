@@ -79,8 +79,10 @@ module.exports = function(passport){
                     console.log(err);
                     res.status(500).send('Internal Server Error');
                   } else {
+                    req.session.nickname = nickname;
                     req.session.save(function(){
                       res.redirect('/');
+                      console.log(req.nickname);
                     })
                   }
                 });
@@ -89,7 +91,5 @@ module.exports = function(passport){
           });
         }});
       });
-
-
     return router;
 }
