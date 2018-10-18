@@ -32,7 +32,8 @@ module.exports = function(passport){
               `);
             //아이디가 있다면
         } else
-          res.redirect('/homepage');
+          console.log(req.user);
+          res.render('topic/homepage', {welcome: "Good day! " + row[0].nickname});
         }
       });
       }
