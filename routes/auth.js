@@ -32,8 +32,10 @@ module.exports = function(passport){
               `);
             //아이디가 있다면
         } else
-          console.log(req.user);
-          res.render('topic/homepage', {welcome: "Good day! " + row[0].nickname});
+          req.session.nickname = row[0].nickname;
+          return req.session.save(function(){
+            res.redirect('topic/homepage');
+          });
         }
       });
       }
@@ -77,7 +79,9 @@ module.exports = function(passport){
                     console.log(err);
                     res.status(500).send('Internal Server Error');
                   } else {
-                    res.redirect('/');
+                    req.session.save(function(){
+                      res.redirect('/');
+                    })
                   }
                 });
               }
