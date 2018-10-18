@@ -18,17 +18,6 @@ nav.navbar.navbar-inverse
           a(href='/socket_io') Socket.IO Library
         li
           a(href='/upload') Insert/Fetch File
-        //- li.dropdown
-        //-   a.dropdown-toggle(data-toggle='dropdown', href='#')
-        //-     | Page 1 
-        //-     span.caret
-        //-   ul.dropdown-menu
-        //-     li
-        //-       a(href='#') Page 1-1
-        //-     li
-        //-       a(href='#') Page 1-2
-        //-     li
-        //-       a(href='#') Page 1-3
       
       ul.nav.navbar-nav.navbar-right
         if user
@@ -51,9 +40,9 @@ block navigate
     
     div.jumbotron
       h1= user
-      //- ul
-      //-   each topic in topics
-      //-     li
-      //-       a(href='/topic/'+topic.id)= topic.image
-      //- 
-      //- 
+      ul
+        each topic in topics
+          li
+            a(href='/topic/'+topic.id)= topic.image
+      
+      

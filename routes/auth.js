@@ -34,7 +34,7 @@ module.exports = function(passport){
         } else
           req.session.nickname = row[0].nickname;
           return req.session.save(function(){
-            res.redirect('topic/homepage');
+            res.redirect('/homepage');
           });
         }
       });
