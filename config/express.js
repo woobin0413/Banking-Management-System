@@ -12,6 +12,7 @@ module.exports =  function(){
   var bodyParser = require('body-parser');
   var app = express();
 
+  app.use(require('cookie-parser')());
   app.locals.pretty = true;
   app.use(bodyParser.urlencoded({ extended: false }));
 
