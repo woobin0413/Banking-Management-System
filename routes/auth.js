@@ -26,10 +26,7 @@ module.exports = function(passport){
         } else {
           //아이디가없다
           if(row.length===0) {
-            return res.send(`
-              <h1><span style="color:red">USERNAME NOT FOUND ON SYSTEM!!!</span>
-              </h1>
-              `);
+            res.render('auth/login',{email_pw_validation: 'wrong username or password'})
             //아이디가 있다면
         } else
           req.session.nickname = row[0].nickname;
