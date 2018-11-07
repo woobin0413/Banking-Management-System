@@ -30,7 +30,8 @@ module.exports = function() {
         res.status(500).send('Internal Server Error');
         console.log(err);
       } else {
-        res.render('topic/homepage',{topics:topics});
+        res.render('topic/homepage',{topics:topics, user:req.user});
+        
       }
     });
 

@@ -33,7 +33,8 @@
     "sha256": "^0.2.0",
     "socket.io": "^2.1.1",
     "supervisor": "^0.12.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "website-scraper": "^3.4.0"
   },
   "devDependencies": {},
   "scripts": {
