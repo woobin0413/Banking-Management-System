@@ -78,3 +78,13 @@ footer {
   cursor: inherit;
   display: block;
 }
+.img>a {
+  color: brown;
+  font-size: 30px;
+  text-align: center;
+  
+}
+.img>a:hover{
+  background-color: yellow;
+  display: block;
+}
